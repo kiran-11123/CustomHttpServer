@@ -72,6 +72,21 @@ public class Main {
                         "{\"received\":\"" + escapeJson(request.body) + "\"}";
 
             }
+            else if(request.method.equals("GET") && request.path.equals("/time")){
+
+                responseBody = "{\"time\":\"" + new Date().toString() + "\"}";
+
+            }
+            else if (request.method.equals("GET") && request.path.equals("/users")){
+                 
+                List<String> users = new ArrayList<>();
+                
+                users.add("{\"name\":\"Alice\",\"age\":30}");
+                users.add("{\"name\":\"Bob\",\"age\":25}");
+                users.add("{\"name\":\"Charlie\",\"age\":35}");
+                responseBody = "{\"users\":[" + String.join(",", users) + "]}";
+            }
+            
             else {
 
                 responseBody = "{\"error\":\"Route not found\"}";
